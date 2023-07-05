@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sg.technicalTask.dto.UsersResponse;
-import ru.sg.technicalTask.mapping.Mapping;
+import ru.sg.technicalTask.exception.ResourceNotFoundException;
+import ru.sg.technicalTask.mappers.Mapper;
 import ru.sg.technicalTask.model.Users;
 import ru.sg.technicalTask.repository.UserRepository;
 
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final Mapping map;
+    private final Mapper map;
 
     @Override
     @Transactional(readOnly = true)
@@ -27,13 +28,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users findById() {
-        return null;
+    @Transactional(readOnly = true)
+    public UsersResponse findById(Long id) {
+        Users users = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User is not fount."));
+
+        return map.toResponse(users);
     }
 
     @Override
-    public void create(Users users) {
-
+    @Transactional
+    public void create(UsersResponse response) {
+        userRepository.save(map.toEntity(response));
     }
 
     @Override
@@ -42,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Long userId) {
+    public void delete(Long id) {
 
     }
 }

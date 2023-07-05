@@ -1,4 +1,4 @@
-package ru.sg.technicalTask.mapping;
+package ru.sg.technicalTask.mappers;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -9,7 +9,7 @@ import ru.sg.technicalTask.model.Users;
 
 @Component
 @RequiredArgsConstructor
-public class MappingImpl implements Mapping {
+public class MapperImpl implements Mapper {
 
     private final ModelMapper modelMapper;
 
@@ -22,4 +22,5 @@ public class MappingImpl implements Mapping {
     public Users toEntity(UsersResponse userResponse) {
         return modelMapper.map(userResponse, Users.class);
     }
+
 }

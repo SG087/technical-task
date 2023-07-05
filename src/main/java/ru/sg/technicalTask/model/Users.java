@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
+@NamedEntityGraph(name = "users-details", attributeNodes = @NamedAttributeNode("details"))
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
