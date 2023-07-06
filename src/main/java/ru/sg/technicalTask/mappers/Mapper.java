@@ -6,6 +6,5 @@ import ru.sg.technicalTask.model.User;
 
 public interface Mapper {
     UserResponse toResponse(User user);
-    User toEntity(UserResponse userResponse);
     User toEntity(UserRequest request);
 }
