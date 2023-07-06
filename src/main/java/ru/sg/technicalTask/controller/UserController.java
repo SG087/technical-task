@@ -18,23 +18,23 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final UserService userService;
-    private final Mapper map;
+    private final Mapper mapper;
 
     @GetMapping
     public List<UserResponse> findAll() {
         return userService.findAll().stream()
-                .map(map::toResponse)
+                .map(mapper::toResponse)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public UserResponse findById(@PathVariable(name = "id") Long id) {
-        return map.toResponse(userService.findById(id));
+        return mapper.toResponse(userService.findById(id));
     }
 
     @PostMapping
     public ResponseEntity<HttpStatus> create(@RequestBody UserRequest request) {
-        userService.create(map.toEntity(request));
+        userService.create(mapper.toEntity(request));
 
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
@@ -42,7 +42,7 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<HttpStatus> update(@RequestBody UserRequest request,
                                              @PathVariable(name = "id") Long id) {
-        userService.update(map.toEntity(request), id);
+        userService.update(mapper.toEntity(request), id);
 
         return ResponseEntity.ok(HttpStatus.OK);
     }
