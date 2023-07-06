@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class UsersResponse {
+public class UserResponse {
     private String firstName;
     private String lastName;
     private String patronymic;

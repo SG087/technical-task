@@ -1,9 +1,11 @@
 package ru.sg.technicalTask.mappers;
 
-import ru.sg.technicalTask.dto.UsersResponse;
-import ru.sg.technicalTask.model.Users;
+import ru.sg.technicalTask.dto.UserRequest;
+import ru.sg.technicalTask.dto.UserResponse;
+import ru.sg.technicalTask.model.User;
 
 public interface Mapper {
-    UsersResponse toResponse(Users users);
-    Users toEntity(UsersResponse userResponse);
+    UserResponse toResponse(User user);
+    User toEntity(UserResponse userResponse);
+    User toEntity(UserRequest request);
 }

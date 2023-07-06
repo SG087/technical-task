@@ -1,14 +1,13 @@
 package ru.sg.technicalTask.service;
 
-import ru.sg.technicalTask.dto.UsersResponse;
-import ru.sg.technicalTask.model.Users;
+import ru.sg.technicalTask.model.User;
 
 import java.util.List;
 
 public interface UserService {
-    List<UsersResponse> findAll();
-    UsersResponse findById(Long id);
-    void create(UsersResponse response);
-    void update(UsersResponse response, Long id);
+    List<User> findAll();
+    User findById(Long id);
+    void create(User user);
+    void update(User user, Long id);
     void delete(Long id);
 }
