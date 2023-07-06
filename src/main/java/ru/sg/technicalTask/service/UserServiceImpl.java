@@ -43,8 +43,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(Users users) {
+    @Transactional
+    public void update(UsersResponse response, Long id) {
+        Users existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User is not found."));
 
+        Users updateUser = map.toEntity(response);
+        updateUser.setId(existingUser.getId());
+
+        userRepository.save(updateUser);
     }
 
     @Override
