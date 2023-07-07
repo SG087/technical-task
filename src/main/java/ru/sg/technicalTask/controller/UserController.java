@@ -9,6 +9,7 @@ import ru.sg.technicalTask.dto.UserResponse;
 import ru.sg.technicalTask.mappers.Mapper;
 import ru.sg.technicalTask.service.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,14 +34,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> create(@RequestBody UserRequest request) {
+    public ResponseEntity<HttpStatus> create(@Valid @RequestBody UserRequest request) {
         userService.create(mapper.toEntity(request));
-
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> update(@RequestBody UserRequest request,
+    public ResponseEntity<HttpStatus> update(@Valid @RequestBody UserRequest request,
                                              @PathVariable(name = "id") Long id) {
         userService.update(mapper.toEntity(request), id);
 

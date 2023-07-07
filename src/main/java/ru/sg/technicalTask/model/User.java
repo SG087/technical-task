@@ -22,7 +22,7 @@ public class User {
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "patronymic", nullable = false)
+    @Column(name = "patronymic")
     private String patronymic;
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
