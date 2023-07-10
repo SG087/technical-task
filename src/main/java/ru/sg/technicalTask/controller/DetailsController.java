@@ -9,6 +9,7 @@ import ru.sg.technicalTask.dto.DetailsResponse;
 import ru.sg.technicalTask.mappers.Mapper;
 import ru.sg.technicalTask.service.DetailsService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class DetailsController {
     }
 
     @PostMapping("/{userId}")
-    public ResponseEntity<HttpStatus> createDetailsAndAssignToUser(@RequestBody DetailsRequest request,
+    public ResponseEntity<HttpStatus> createDetailsAndAssignToUser(@Valid @RequestBody DetailsRequest request,
                                                                    @PathVariable(name = "userId") Long userId) {
         detailsService.create(mapper.toEntity(request), userId);
 
@@ -41,16 +42,9 @@ public class DetailsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> update(@RequestBody DetailsRequest request,
+    public ResponseEntity<HttpStatus> update(@Valid@RequestBody DetailsRequest request,
                                              @PathVariable(name = "id") Long id) {
         detailsService.update(mapper.toEntity(request), id);
-
-        return ResponseEntity.ok(HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> delete(@PathVariable(name = "id") Long id) {
-        detailsService.delete(id);
 
         return ResponseEntity.ok(HttpStatus.OK);
     }

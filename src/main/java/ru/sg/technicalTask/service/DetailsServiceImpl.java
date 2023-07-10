@@ -53,14 +53,4 @@ public class DetailsServiceImpl implements DetailsService {
 
         detailsRepository.save(updateDetails);
     }
-
-    @Override
-    @Transactional
-    public void delete(Long id) {
-        if (!detailsRepository.existsById(id)) {
-            throw new ResourceNotFoundException("User data not found.");
-        }
-
-        detailsRepository.deleteById(id);
-    }
 }

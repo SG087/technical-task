@@ -9,5 +9,4 @@ public interface DetailsService {
     Details findById(Long id);
     void create(Details details, Long userId);
     void update(Details details, Long id);
-    void delete(Long id);
 }
