@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.sg.technicalTask.security.dto.AuthenticationRequest;
 import ru.sg.technicalTask.security.dto.AuthenticationResponse;
-import ru.sg.technicalTask.security.dto.RegisterRequest;
 import ru.sg.technicalTask.security.service.AuthenticationService;
+import ru.sg.technicalTask.security.dto.RegisterRequest;
 
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-public class SecurityController {
+public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
@@ -22,6 +22,7 @@ public class SecurityController {
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
+
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));

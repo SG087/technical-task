@@ -1,6 +1,7 @@
 package ru.sg.technicalTask.security.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,7 @@ import ru.sg.technicalTask.security.repository.SecurityUserRepository;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
 
     private final SecurityUserRepository securityUserRepository;
@@ -24,7 +26,7 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
         if (securityUserRepository.existsByUsername(request.getUsername())) {
-            throw new EmailAlreadyExistsException("Email already exists");
+            throw new EmailAlreadyExistsException("Email already exists.");
         }
 
         SecurityUser user = SecurityUser.builder()
@@ -51,7 +53,6 @@ public class AuthenticationService {
 
         SecurityUser user = securityUserRepository.findByUsername(request.getUsername())
                 .orElseThrow();
-
         String jwtToken = jwtService.generateToken(user);
 
         return AuthenticationResponse.builder()

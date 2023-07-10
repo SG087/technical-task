@@ -1,4 +1,4 @@
-package ru.sg.technicalTask.security.configuration;
+package ru.sg.technicalTask.security.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
