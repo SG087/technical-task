@@ -35,5 +35,4 @@ public class MapperImpl implements Mapper {
     public Details toEntity(DetailsRequest request) {
         return modelMapper.map(request, Details.class);
     }
-
 }
