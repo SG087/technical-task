@@ -1,5 +1,7 @@
 package ru.sg.technicalTask.controller;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -9,8 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.sg.technicalTask.exception.ExceptionBody;
 import ru.sg.technicalTask.exception.ResourceNotFoundException;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

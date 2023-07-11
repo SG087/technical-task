@@ -1,5 +1,6 @@
 package ru.sg.technicalTask.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,6 @@ import ru.sg.technicalTask.dto.DetailsResponse;
 import ru.sg.technicalTask.mappers.Mapper;
 import ru.sg.technicalTask.service.DetailsService;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +42,7 @@ public class DetailsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> update(@Valid@RequestBody DetailsRequest request,
+    public ResponseEntity<HttpStatus> update(@Valid @RequestBody DetailsRequest request,
                                              @PathVariable(name = "id") Long id) {
         detailsService.update(mapper.toEntity(request), id);
 

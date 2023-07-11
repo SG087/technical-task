@@ -1,8 +1,8 @@
 package ru.sg.technicalTask.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 
 @Entity
 @Table(name = "details")
