@@ -1,5 +1,6 @@
 package ru.sg.technicalTask.security.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import ru.sg.technicalTask.security.dto.RegisterRequest;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authentication Controller", description = "Auth API")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
