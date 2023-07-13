@@ -6,9 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.sg.technicalTask.dto.UserImageDto;
 import ru.sg.technicalTask.dto.UserRequest;
 import ru.sg.technicalTask.dto.UserResponse;
 import ru.sg.technicalTask.mappers.Mapper;
+import ru.sg.technicalTask.model.UserImage;
 import ru.sg.technicalTask.service.UserService;
 
 import java.util.List;
@@ -54,6 +56,13 @@ public class UserController {
         userService.delete(id);
 
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/image")
+    public void uploadImage(@PathVariable(name = "id") Long id,
+                            @ModelAttribute UserImageDto imageDto) {
+        UserImage image = mapper.toEntity(imageDto);
+        userService.uploadImage(id, image);
     }
 
 }

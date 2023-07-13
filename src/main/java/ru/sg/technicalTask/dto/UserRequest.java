@@ -1,11 +1,14 @@
 package ru.sg.technicalTask.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -22,4 +25,6 @@ public class UserRequest {
     private String patronymic;
     @NotNull(message = "The date of birth field should not be empty.")
     private LocalDate dateOfBirth;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private List<String> images;
 }

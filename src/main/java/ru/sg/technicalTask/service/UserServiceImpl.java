@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sg.technicalTask.exception.ResourceNotFoundException;
 import ru.sg.technicalTask.model.User;
+import ru.sg.technicalTask.model.UserImage;
 import ru.sg.technicalTask.repository.UserRepository;
 
 import java.util.List;
@@ -66,5 +67,14 @@ public class UserServiceImpl implements UserService {
         }
 
         userRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void uploadImage(Long id, UserImage image) {
+//        User user = findById(id);
+//        String fileName = imageService.upload(image);
+//        user.getImages().add(fileName);
+//        userRepository.save(user);
     }
 }
