@@ -3,6 +3,8 @@ package ru.sg.technicalTask.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 
 @Entity
 @Table(name = "details")
@@ -11,7 +13,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class Details {
+public class Details implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

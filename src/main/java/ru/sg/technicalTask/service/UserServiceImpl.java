@@ -1,6 +1,10 @@
 package ru.sg.technicalTask.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sg.technicalTask.exception.ResourceNotFoundException;
@@ -17,12 +21,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable(value = "UserService::findAll")
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable(value = "UserService::findById", key = "#id")
     public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User is not found."));
@@ -30,12 +36,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    @Caching(cacheable = @Cacheable(value = "UserService::findById", key = "#user.id"))
     public void create(User user) {
         userRepository.save(user);
     }
 
     @Override
     @Transactional
+    @Caching(put = @CachePut(value = "UserService::findById", key = "#id"))
     public void update(User user, Long id) {
         User updateUser = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User is not found."));
@@ -51,6 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "UserService::findById", key = "#id")
     public void delete(Long id) {
         if (!userRepository.existsById(id)) {
             throw new ResourceNotFoundException("User is not found.");

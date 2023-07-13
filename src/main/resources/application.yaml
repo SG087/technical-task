@@ -1,9 +1,19 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
+  cache:
+    type: redis
+    cache-names: redis-cache
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: 6379
+      password: ${REDIS_PASSWORD}
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${env.URL}
-    username: ${env.USER}
-    password: ${env.PASSWORD}
+    url: jdbc:postgresql://${POSTGRES_HOST}:5401/${POSTGRES_DATABASE}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
   jpa:
     properties:
       hibernate:
@@ -14,6 +24,8 @@ spring:
   liquibase:
     change-log: classpath:liquibase/db.changelog.yaml
     enabled: true
-    default-schema: public
 springdoc:
   override-with-generic-response: false
+security:
+  jwt:
+    secret: ${JWT_SECRET}

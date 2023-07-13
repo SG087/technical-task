@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.sg.technicalTask.exception.ExceptionBody;
-import ru.sg.technicalTask.exception.ResourceNotFoundException;
+import ru.sg.technicalTask.security.exception.EmailAlreadyExistsException;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
+    @ExceptionHandler(EmailAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ExceptionBody handleResourceNotFound(ResourceNotFoundException e) {
+    public ExceptionBody handleEmailAlreadyExists(EmailAlreadyExistsException e) {
         return new ExceptionBody(e.getMessage());
     }
 

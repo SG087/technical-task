@@ -31,3 +31,6 @@ VALUES ('1995-02-14', 'Joseph', 'Lopez', 'Walker', 1),
        ('1992-05-15', 'Jane', 'Smith', 'Doe', 13),
        ('1990-01-01', 'John', 'Doe', 'Smith', 14),
        ('1997-12-28', 'Robert', 'Wilson', 'Taylor', 15);
+
+INSERT INTO security_user(password, role, email)
+VALUES ('$2a$10$RjBEAucotkZiUNFbYfKdaOgVjQtQ5fPKc20XENi3LEpk5BFZn9RZa', 'ADMIN', 'admin');

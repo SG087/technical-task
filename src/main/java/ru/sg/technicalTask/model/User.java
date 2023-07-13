@@ -3,6 +3,7 @@ package ru.sg.technicalTask.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 @Builder
 @NamedEntityGraph(name = "users-details", attributeNodes = @NamedAttributeNode("details"))
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
