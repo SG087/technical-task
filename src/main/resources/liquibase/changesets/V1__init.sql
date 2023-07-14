@@ -15,9 +15,7 @@ CREATE TABLE IF NOT EXISTS users
     patronymic    VARCHAR(255),
     details_id    INT8,
     PRIMARY KEY (id),
-    CONSTRAINT fk_details_users
-        FOREIGN KEY (details_id)
-            REFERENCES details (id)
+    CONSTRAINT fk_details_users FOREIGN KEY (details_id) REFERENCES details (id)
 );
 
 CREATE TABLE IF NOT EXISTS security_user
@@ -27,4 +25,11 @@ CREATE TABLE IF NOT EXISTS security_user
     role     VARCHAR(255),
     email    VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
+);
+
+create table if not exists users_images
+(
+    user_id bigint not null,
+    image varchar(255) not null,
+    constraint fk_users_images_users foreign key (user_id) references users(id)
 );

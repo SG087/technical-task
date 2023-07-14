@@ -24,6 +24,7 @@
 		<jjwt.version>0.11.5</jjwt.version>
 		<liquibase.version>4.23.0</liquibase.version>
 		<openapi.version>2.1.0</openapi.version>
+		<minio.version>8.5.3</minio.version>
 	</properties>
 
 	<dependencies>
@@ -91,6 +92,12 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${openapi.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>io.minio</groupId>
+			<artifactId>minio</artifactId>
+			<version>${minio.version}</version>
+		</dependency>
+
 
 
 		<dependency>

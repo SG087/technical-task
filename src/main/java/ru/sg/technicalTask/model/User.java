@@ -29,8 +29,8 @@ public class User implements Serializable {
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
     @Column(name = "image")
-    @CollectionTable(name = "user_images")
-    @ElementCollection
+    @CollectionTable(name = "users_images")
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> images;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "details_id", referencedColumnName = "id")

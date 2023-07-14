@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ru.sg.technicalTask.dto.UserImageDto;
 import ru.sg.technicalTask.dto.UserRequest;
@@ -26,6 +27,7 @@ public class UserController {
     private final Mapper mapper;
 
     @GetMapping
+    @Transactional
     public List<UserResponse> findAll() {
         return userService.findAll().stream()
                 .map(mapper::toResponse)
@@ -33,6 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @Transactional
     public UserResponse findById(@PathVariable(name = "id") Long id) {
         return mapper.toResponse(userService.findById(id));
     }

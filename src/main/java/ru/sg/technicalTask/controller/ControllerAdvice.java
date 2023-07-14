@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.sg.technicalTask.exception.ExceptionBody;
+import ru.sg.technicalTask.exception.ImageUploadException;
 import ru.sg.technicalTask.security.exception.EmailAlreadyExistsException;
 
 import java.util.List;
@@ -21,6 +22,12 @@ public class ControllerAdvice {
     @ExceptionHandler(EmailAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ExceptionBody handleEmailAlreadyExists(EmailAlreadyExistsException e) {
+        return new ExceptionBody(e.getMessage());
+    }
+
+    @ExceptionHandler(ImageUploadException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionBody handleImageUpload(ImageUploadException e) {
         return new ExceptionBody(e.getMessage());
     }
 

@@ -19,6 +19,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final ImageService imageService;
 
     @Override
     @Transactional(readOnly = true)
@@ -72,9 +73,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void uploadImage(Long id, UserImage image) {
-//        User user = findById(id);
-//        String fileName = imageService.upload(image);
-//        user.getImages().add(fileName);
-//        userRepository.save(user);
+        User user = findById(id);
+        String fileName = imageService.upload(image);
+        user.getImages().add(fileName);
+        userRepository.save(user);
     }
 }
